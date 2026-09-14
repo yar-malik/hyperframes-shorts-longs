@@ -1,0 +1,13 @@
+{
+  "duration": 16.25,
+  "maxStaticSec": 1.8,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#scene-1", "bySec": 0.1 },
+    { "kind": "appearsBy", "selector": "#motion-console", "bySec": 1.1 },
+    { "kind": "before", "a": "#input-text", "b": "#input-url" },
+    { "kind": "before", "a": "#input-url", "b": "#input-image" },
+    { "kind": "staysInFrame", "selector": "#presenter-clip" },
+    { "kind": "staysInFrame", "selector": "#canvas" },
+    { "kind": "keepsMoving", "withinSelector": "#root" }
+  ]
+}

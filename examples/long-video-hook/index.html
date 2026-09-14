@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ink: #11100e;
+        --paper: #f3eee4;
+        --paper-2: #e7dfd0;
+        --orange: #d94c23;
+        --blue: #274761;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+      body { font-family: "Space Mono", monospace; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); color: var(--ink); }
+      .presenter-clip { position: absolute; inset: 0; overflow: hidden; z-index: 1; will-change: clip-path; }
+      .presenter-camera { position: absolute; inset: 0; width: 1920px; height: 1080px; transform-origin: 50% 50%; will-change: transform; }
+      #presenter-video { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; }
+      .canvas {
+        position: absolute; inset: 0 384px 0 0; width: 1536px; height: 1080px; overflow: hidden; z-index: 3;
+        background: radial-gradient(circle at 76% 20%, rgba(241,96,50,.16), transparent 27%), linear-gradient(rgba(23,21,18,.045) 2px, transparent 2px), linear-gradient(90deg, rgba(23,21,18,.045) 2px, transparent 2px), var(--paper);
+        background-size: auto, 62px 62px, 62px 62px, auto; will-change: clip-path;
+      }
+      .canvas::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .12; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E"); }
+      .rail { position: absolute; top: 34px; left: 58px; right: 58px; height: 38px; z-index: 20; display: flex; align-items: center; gap: 18px; }
+      .rail-label { font-size: 18px; font-weight: 700; letter-spacing: .16em; }
+      .rail-track { position: relative; flex: 1; height: 6px; background: rgba(23,21,18,.14); overflow: hidden; }
+      .rail-fill { display: block; width: 100%; height: 100%; background: var(--orange); transform-origin: left center; }
+      .rail-time { min-width: 66px; font-size: 18px; text-align: right; }
+      .scene { position: absolute; inset: 92px 0 160px 0; width: 1536px; height: 828px; padding: 52px 66px; overflow: hidden; }
+      .eyebrow { display: inline-flex; align-items: center; gap: 13px; padding: 10px 16px; border: 2px solid var(--ink); background: var(--paper); font-size: 18px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+      .eyebrow-dot { width: 13px; height: 13px; border-radius: 50%; background: var(--orange); }
+      .display { font-family: "Archivo Black", sans-serif; font-weight: 400; letter-spacing: -.055em; line-height: .88; text-transform: uppercase; }
+      .orange { color: var(--orange); }
+      .scene-one-title { position: absolute; left: 66px; top: 134px; width: 780px; font-size: 142px; }
+      .scene-one-title .wf { display: block; opacity: 0; }
+      .motion-console { position: absolute; right: 66px; top: 104px; width: 530px; height: 564px; border: 4px solid var(--ink); border-radius: 28px; background: var(--ink); color: var(--paper); overflow: hidden; box-shadow: 20px 22px 0 var(--orange); }
+      .console-top { height: 62px; border-bottom: 2px solid rgba(243,238,228,.25); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; font-size: 16px; letter-spacing: .08em; }
+      .console-dots { display: flex; gap: 9px; }
+      .console-dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--orange); }
+      .stage-window { position: relative; height: 334px; margin: 22px; border-radius: 18px; overflow: hidden; background: #253846; }
+      .orbit { position: absolute; left: 50%; top: 50%; width: 235px; height: 235px; margin: -117px 0 0 -117px; border: 3px solid rgba(243,238,228,.42); border-radius: 50%; }
+      .orbit::before, .orbit::after { content: ""; position: absolute; width: 42px; height: 42px; border-radius: 10px; background: var(--orange); }
+      .orbit::before { left: -18px; top: 90px; transform: rotate(18deg); }
+      .orbit::after { right: -18px; top: 90px; transform: rotate(-18deg); background: var(--paper); }
+      .astra-core { position: absolute; left: 50%; top: 50%; width: 112px; height: 112px; margin: -56px 0 0 -56px; border-radius: 26px; background: var(--orange); display: grid; place-items: center; font-family: "Archivo Black", sans-serif; font-size: 48px; }
+      .timeline-mini { margin: 0 22px; display: grid; gap: 12px; }
+      .timeline-mini span { display: block; height: 16px; border-radius: 8px; background: rgba(243,238,228,.14); overflow: hidden; }
+      .timeline-mini i { display: block; width: 72%; height: 100%; background: var(--orange); transform-origin: left center; }
+      .timeline-mini span:nth-child(2) i { width: 46%; background: #6ea0bd; }
+      .timeline-mini span:nth-child(3) i { width: 84%; background: var(--paper-2); }
+      .scene-two-title { position: absolute; left: 66px; top: 142px; width: 920px; font-size: 120px; }
+      .unlock-stack { position: absolute; right: 80px; top: 124px; width: 390px; height: 530px; }
+      .unlock-card { position: absolute; width: 330px; height: 170px; padding: 28px; border: 4px solid var(--ink); border-radius: 24px; background: var(--paper-2); font-weight: 700; font-size: 20px; box-shadow: 12px 12px 0 var(--ink); }
+      .unlock-card:nth-child(1) { top: 0; right: 0; }
+      .unlock-card:nth-child(2) { top: 160px; left: 0; background: var(--orange); }
+      .unlock-card:nth-child(3) { top: 320px; right: 0; }
+      .unlock-num { font-family: "Archivo Black", sans-serif; font-size: 54px; line-height: 1; }
+      .scene-three-title { position: absolute; left: 66px; top: 100px; width: 1040px; font-size: 94px; }
+      .input-row { position: absolute; left: 66px; right: 66px; top: 370px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+      .input-card { min-height: 270px; padding: 28px; border: 4px solid var(--ink); border-radius: 26px; background: var(--paper); box-shadow: 10px 12px 0 var(--ink); }
+      #scene-two-title, #unlock-1, #unlock-2, #unlock-3, #scene-three-title, #input-text, #input-url, #input-image, #scene-four-title, #output-a, #output-b, #output-c, #final-lockup { opacity: 0; }
+      .input-card:nth-child(2) { background: var(--orange); }
+      .input-card:nth-child(3) { background: var(--blue); color: var(--paper); }
+      .input-index { font-size: 18px; font-weight: 700; letter-spacing: .12em; }
+      .input-name { margin-top: 58px; font-family: "Archivo Black", sans-serif; font-size: 48px; text-transform: uppercase; line-height: .95; }
+      .input-value { margin-top: 18px; font-size: 18px; opacity: .75; }
+      .scene-four-title { position: absolute; left: 66px; top: 92px; width: 760px; font-size: 96px; }
+      .output-wall { position: absolute; right: 66px; top: 82px; width: 610px; height: 620px; display: grid; grid-template-columns: 1.15fr .85fr; grid-template-rows: 1fr .8fr; gap: 20px; }
+      .output-card { position: relative; overflow: hidden; border: 4px solid var(--ink); border-radius: 25px; background: var(--paper-2); box-shadow: 9px 10px 0 var(--ink); }
+      .output-card:first-child { grid-row: 1 / 3; background: var(--blue); }
+      .output-card:nth-child(2) { background: var(--orange); }
+      .output-card:nth-child(3) { background: var(--paper); }
+      .output-card::before { content: "MOTION"; position: absolute; left: 22px; top: 20px; font-weight: 700; font-size: 17px; letter-spacing: .1em; }
+      .output-card:first-child::before { color: var(--paper); }
+      .shape-a, .shape-b, .shape-c { position: absolute; left: 50%; top: 50%; transform-origin: center; }
+      .shape-a { width: 170px; height: 170px; margin: -85px; border: 22px solid var(--orange); border-radius: 50%; }
+      .shape-b { width: 120px; height: 120px; margin: -60px; background: var(--ink); border-radius: 20px; }
+      .shape-c { width: 150px; height: 12px; margin: -6px -75px; background: var(--orange); box-shadow: 0 -42px 0 var(--orange), 0 42px 0 var(--orange); }
+      .final-lockup { position: absolute; left: 66px; bottom: 60px; width: 700px; padding-top: 24px; border-top: 5px solid var(--orange); font-size: 28px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+      .caption { position: absolute; left: 66px; right: 66px; bottom: 48px; min-height: 104px; z-index: 30; display: flex; align-items: flex-end; flex-wrap: wrap; align-content: flex-end; gap: 0 16px; padding: 18px 24px; border: 3px solid var(--ink); border-radius: 20px; background: rgba(243,238,228,.95); box-shadow: 9px 9px 0 var(--orange); font-family: "Archivo Black", sans-serif; font-size: 40px; line-height: 1.08; text-transform: uppercase; }
+      .caption-word { display: inline-block; color: #5c5750; transform-origin: 50% 60%; }
+      .presenter-divider { position: absolute; left: 1530px; top: 0; width: 12px; height: 1080px; background: var(--orange); z-index: 8; transform-origin: center top; }
+      .presenter-tag { position: absolute; right: 24px; top: 25px; z-index: 9; padding: 10px 13px; background: var(--orange); color: var(--ink); font-size: 16px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      .flash-title { position: absolute; left: 72px; top: 82px; z-index: 12; padding: 22px 28px 28px; color: var(--paper); background: var(--ink); font-family: "Archivo Black", sans-serif; font-size: 132px; line-height: .9; letter-spacing: -.05em; text-transform: uppercase; box-shadow: 10px 10px 0 var(--orange); }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-rih0" id="root" data-composition-id="main" data-start="0" data-duration="16.25" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-l3ha" class="presenter-clip" id="presenter-clip"><div data-hf-id="hf-zea7" class="presenter-camera" id="presenter-camera" data-layout-allow-overflow=""><video data-hf-id="hf-8bh0" id="presenter-video" class="clip" src="source/gpt-6-astra-raw-hook.mp4" muted playsinline data-start="0" data-duration="16.25" data-track-index="0"></video></div></div>
+      <audio data-hf-id="hf-3fse" id="presenter-audio" src="source/gpt-6-astra-raw-hook.mp4" data-start="0" data-duration="16.25" data-track-index="10" data-volume="1"></audio>
+      <div data-hf-id="hf-v4z3" id="flash-title" class="flash-title" data-layout-allow-overlap="">GPT-6<br data-hf-id="hf-x5px">ASTRA</div>
+      <main data-hf-id="hf-mtfy" id="canvas" class="canvas">
+        <div data-hf-id="hf-qzq8" class="rail"><span data-hf-id="hf-ap9r" class="rail-label">HYPERFRAMES // HOOK EDIT</span><span data-hf-id="hf-dmpz" class="rail-track"><i data-hf-id="hf-tilq" id="rail-fill" class="rail-fill"></i></span><span data-hf-id="hf-5syu" class="rail-time">00:16</span></div>
+        <section data-hf-id="hf-klvl" id="scene-1" class="clip scene" data-start="0" data-duration="5.28" data-track-index="2">
+          <div data-hf-id="hf-wudu" class="eyebrow"><i data-hf-id="hf-1gvz" class="eyebrow-dot"></i> Motion model / 01</div>
+          <h1 data-hf-id="hf-s3p6" class="display scene-one-title"><span data-hf-id="hf-49iz" id="wf-gpt" class="wf">GPT-6</span><span data-hf-id="hf-wkha" id="wf-astra" class="wf orange">Astra</span><span data-hf-id="hf-6i30" id="wf-motion" class="wf">Motion</span></h1>
+          <div data-hf-id="hf-zkd6" id="motion-console" class="motion-console"><div data-hf-id="hf-26a5" class="console-top"><span data-hf-id="hf-d5vs">ASTRA.CANVAS</span><span data-hf-id="hf-bo31" class="console-dots"><i data-hf-id="hf-wt6k"></i><i data-hf-id="hf-zeb8"></i><i data-hf-id="hf-y7e5"></i></span></div><div data-hf-id="hf-bj77" class="stage-window"><div data-hf-id="hf-iql2" id="orbit" class="orbit"></div><div data-hf-id="hf-aqht" id="astra-core" class="astra-core">A</div></div><div data-hf-id="hf-tgnr" class="timeline-mini"><span data-hf-id="hf-uckh"><i data-hf-id="hf-e2yd" class="mini-fill"></i></span><span data-hf-id="hf-l73p"><i data-hf-id="hf-km95" class="mini-fill"></i></span><span data-hf-id="hf-me0s"><i data-hf-id="hf-lt68" class="mini-fill"></i></span></div></div>
+        </section>
+        <section data-hf-id="hf-68ot" id="scene-2" class="clip scene" data-start="5.28" data-duration="2.78" data-track-index="2">
+          <div data-hf-id="hf-vj4h" class="eyebrow"><i data-hf-id="hf-x2v3" class="eyebrow-dot"></i> Workflow / 02</div><h2 data-hf-id="hf-67oo" id="scene-two-title" class="display scene-two-title">Unlock the <span data-hf-id="hf-6e9q" class="orange">workflow</span></h2>
+          <div data-hf-id="hf-jjfb" class="unlock-stack"><article data-hf-id="hf-6t2k" id="unlock-1" class="unlock-card"><div data-hf-id="hf-j1yw" class="unlock-num">01</div><div data-hf-id="hf-1csl">Describe the idea</div></article><article data-hf-id="hf-hok7" id="unlock-2" class="unlock-card"><div data-hf-id="hf-hv1t" class="unlock-num">02</div><div data-hf-id="hf-dw6l">Give it context</div></article><article data-hf-id="hf-biue" id="unlock-3" class="unlock-card"><div data-hf-id="hf-i9cu" class="unlock-num">03</div><div data-hf-id="hf-fl6v">Direct the style</div></article></div>
+        </section>
+        <section data-hf-id="hf-i02s" id="scene-3" class="clip scene" data-start="8.06" data-duration="4.31" data-track-index="2">
+          <div data-hf-id="hf-ifhy" class="eyebrow"><i data-hf-id="hf-wok2" class="eyebrow-dot"></i> Inputs / 03</div><h2 data-hf-id="hf-qntk" id="scene-three-title" class="display scene-three-title">Three inputs. <span data-hf-id="hf-kfr4" class="orange">One system.</span></h2>
+          <div data-hf-id="hf-kfjv" class="input-row"><article data-hf-id="hf-sug4" id="input-text" class="input-card"><div data-hf-id="hf-c0r1" class="input-index">INPUT_01</div><div data-hf-id="hf-4af7" class="input-name">Text prompt</div><div data-hf-id="hf-r936" class="input-value">“Build the motion…”</div></article><article data-hf-id="hf-bnno" id="input-url" class="input-card"><div data-hf-id="hf-d7o4" class="input-index">INPUT_02</div><div data-hf-id="hf-erwg" class="input-name">Website URL</div><div data-hf-id="hf-tntf" class="input-value">https://your-site.com</div></article><article data-hf-id="hf-145s" id="input-image" class="input-card"><div data-hf-id="hf-ctd3" class="input-index">INPUT_03</div><div data-hf-id="hf-26z8" class="input-name">Reference image</div><div data-hf-id="hf-v47q" class="input-value">STYLE_FRAME.PNG</div></article></div>
+        </section>
+        <section data-hf-id="hf-7tt7" id="scene-4" class="clip scene" data-start="12.37" data-duration="3.88" data-track-index="2">
+          <div data-hf-id="hf-xnzn" class="eyebrow"><i data-hf-id="hf-wa91" class="eyebrow-dot"></i> Output / 04</div><h2 data-hf-id="hf-eb9o" id="scene-four-title" class="display scene-four-title">Every motion <span data-hf-id="hf-nehy" class="orange">designed.</span></h2>
+          <div data-hf-id="hf-6t6s" class="output-wall"><article data-hf-id="hf-jct6" id="output-a" class="output-card"><div data-hf-id="hf-akyh" class="shape-a"></div></article><article data-hf-id="hf-bcq1" id="output-b" class="output-card"><div data-hf-id="hf-ej2i" class="shape-b"></div></article><article data-hf-id="hf-en1c" id="output-c" class="output-card"><div data-hf-id="hf-kosb" class="shape-c"></div></article></div><div data-hf-id="hf-ipz2" id="final-lockup" class="final-lockup">Text + URL + reference → full motion canvas</div>
+        </section>
+        <div data-hf-id="hf-k37n" id="caption-1" class="clip caption" data-start="0" data-duration="5.28" data-track-index="8" data-layout-allow-caption-zone=""></div>
+        <div data-hf-id="hf-n32v" id="caption-2" class="clip caption" data-start="5.28" data-duration="2.78" data-track-index="8" data-layout-allow-caption-zone=""></div>
+        <div data-hf-id="hf-ei6e" id="caption-3" class="clip caption" data-start="8.06" data-duration="4.31" data-track-index="8" data-layout-allow-caption-zone=""></div>
+        <div data-hf-id="hf-uulh" id="caption-4" class="clip caption" data-start="12.37" data-duration="3.88" data-track-index="8" data-layout-allow-caption-zone=""></div>
+      </main>
+      <div data-hf-id="hf-0ppu" id="presenter-divider" class="presenter-divider"></div><div data-hf-id="hf-hvof" id="presenter-tag" class="presenter-tag">Yar // raw hook</div>
+    </div>
+    <script>
+      const WORDS = [
+        ["caption-1", [["GPT-6",0,.85],["Astra",.88,1.46],["is",1.46,1.7],["the",1.7,2.07],["greatest",2.07,3.06],["model",3.06,3.71],["we've",3.84,4.09],["got",4.09,4.2],["for",4.31,4.45],["motion",4.45,4.79],["design",4.8,5.28]]],
+        ["caption-2", [["Today",5.58,5.78],["I'm",5.78,6],["going",6,6.14],["to",6.14,6.28],["teach",6.28,6.64],["you",6.64,6.86],["how",7.01,7.08],["to",7.08,7.22],["unlock",7.5,7.66],["it",7.66,8.06]]],
+        ["caption-3", [["Give",8.97,9.25],["it",9.25,9.42],["a",9.42,9.46],["text",9.46,9.73],["prompt",9.74,10.3],["a",10.3,10.37],["URL",10.37,10.56],["website",10.64,11.07],["and",11.07,11.25],["a",11.29,11.35],["reference",11.35,11.98],["image",11.98,12.26]]],
+        ["caption-4", [["And",12.37,12.54],["it",12.54,12.68],["creates",12.68,13.2],["every",13.2,13.67],["motion",14.07,14.24],["design",14.56,14.81],["out",14.81,15.09],["there",15.09,15.54],["for",15.56,15.84],["you",15.84,16.18]]]
+      ];
+      const captionWords = [];
+      WORDS.forEach(([id, words]) => { const holder = document.getElementById(id); words.forEach(([text,start,end]) => { const span = document.createElement("span"); span.className = "caption-word"; span.textContent = text; holder.appendChild(span); captionWords.push({el:span,start,end}); }); });
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#flash-title", {opacity:0,scale:1.34,x:-90}, {opacity:1,scale:1,x:0,duration:.2,ease:"expo.out"}, .06).to("#flash-title", {opacity:0,x:-120,duration:.16,ease:"power3.in"}, .48).set("#flash-title", {opacity:0,visibility:"hidden"}, .64);
+      tl.fromTo("#canvas", {clipPath:"inset(0 100% 0 0)"}, {clipPath:"inset(0 0% 0 0)",duration:.46,ease:"expo.out"}, .23);
+      tl.fromTo("#presenter-clip", {clipPath:"inset(0 0% 0 0)"}, {clipPath:"inset(0 0% 0 80%)",duration:.55,ease:"power4.inOut"}, .18);
+      tl.to("#presenter-camera", {x:80,scale:1.03,duration:.1,ease:"power3.in"}, .18).to("#presenter-camera", {x:610,scale:1.18,duration:.1,ease:"none"}, .28).to("#presenter-camera", {x:770,scale:1.3,duration:.34,ease:"power4.out"}, .38);
+      tl.fromTo("#presenter-divider", {scaleY:0}, {scaleY:1,duration:.34,ease:"expo.out"}, .3).fromTo("#presenter-tag", {opacity:0,y:-32}, {opacity:1,y:0,duration:.24,ease:"back.out(1.8)"}, .5);
+      [["#wf-gpt",.24,88,.19],["#wf-astra",.39,62,.16],["#wf-motion",.51,44,.13]].forEach(([selector,at,y,duration]) => { tl.set(selector,{opacity:1,y},at); tl.to(selector,{y:0,duration,ease:"power4.out"},at); });
+      tl.fromTo("#motion-console", {opacity:0,x:110,rotation:3}, {opacity:1,x:0,rotation:0,duration:.5,ease:"back.out(1.45)"}, .42).fromTo(".mini-fill", {scaleX:0}, {scaleX:1,duration:1.15,stagger:.12,ease:"power3.out"}, .82).to("#orbit", {rotation:330,duration:4.1,ease:"none"}, .7).to("#astra-core", {rotation:-18,scale:1.09,duration:.8,yoyo:true,repeat:4,ease:"sine.inOut"}, .75);
+      tl.fromTo("#scene-two-title", {opacity:0,x:-100,scale:1.06}, {opacity:1,x:0,scale:1,duration:.34,ease:"expo.out",immediateRender:false}, 5.31).fromTo("#unlock-1", {opacity:0,y:-80,rotation:-4}, {opacity:1,y:0,rotation:0,duration:.38,ease:"power3.out",immediateRender:false}, 5.4).fromTo("#unlock-2", {opacity:0,x:90,scale:.82}, {opacity:1,x:0,scale:1,duration:.33,ease:"back.out(1.65)",immediateRender:false}, 5.62).fromTo("#unlock-3", {opacity:0,y:75,rotation:3}, {opacity:1,y:0,rotation:0,duration:.29,ease:"power4.out",immediateRender:false}, 5.83);
+      tl.fromTo("#scene-three-title", {opacity:0,y:55}, {opacity:1,y:0,duration:.3,ease:"power4.out",immediateRender:false}, 8.08).fromTo("#input-text", {opacity:0,x:-100,rotation:-3}, {opacity:1,x:0,rotation:0,duration:.34,ease:"expo.out",immediateRender:false}, 8.18).fromTo("#input-url", {opacity:0,y:90,scale:.88}, {opacity:1,y:0,scale:1,duration:.4,ease:"back.out(1.6)",immediateRender:false}, 9.7).fromTo("#input-image", {opacity:0,x:105,rotation:3}, {opacity:1,x:0,rotation:0,duration:.3,ease:"power3.out",immediateRender:false}, 11.15).to("#input-text", {y:-10,duration:.55,yoyo:true,repeat:5,ease:"sine.inOut"}, 8.6);
+      tl.fromTo("#scene-four-title", {opacity:0,x:-90}, {opacity:1,x:0,duration:.32,ease:"expo.out",immediateRender:false}, 12.39).fromTo("#output-a", {opacity:0,y:90,scale:.9}, {opacity:1,y:0,scale:1,duration:.42,ease:"back.out(1.5)",immediateRender:false}, 12.47).fromTo("#output-b", {opacity:0,x:80,rotation:5}, {opacity:1,x:0,rotation:0,duration:.3,ease:"power3.out",immediateRender:false}, 12.66).fromTo("#output-c", {opacity:0,y:70,rotation:-4}, {opacity:1,y:0,rotation:0,duration:.27,ease:"power4.out",immediateRender:false}, 12.82).fromTo("#final-lockup", {opacity:0,x:-70}, {opacity:1,x:0,duration:.33,ease:"expo.out",immediateRender:false}, 13.32).to(".shape-a", {rotation:300,scale:.78,duration:3.2,ease:"none"}, 12.6).to(".shape-b", {rotation:-270,borderRadius:"50%",duration:2.7,ease:"power1.inOut"}, 12.85).to(".shape-c", {rotation:180,scaleX:.62,duration:2.4,ease:"sine.inOut"}, 13.05);
+      tl.fromTo("#rail-fill", {scaleX:0}, {scaleX:1,duration:16.25,ease:"none"}, 0);
+      const captionClock = {t:0};
+      tl.to(captionClock,{t:16.25,duration:16.25,ease:"none",onUpdate:()=>{captionWords.forEach(({el,start,end})=>{const attack=.1,release=.24;let energy=0;if(captionClock.t>=start&&captionClock.t<end)energy=Math.min(1,(captionClock.t-start)/attack);else if(captionClock.t>=end&&captionClock.t<end+release)energy=1-((captionClock.t-end)/release)*.84;else if(captionClock.t>=end+release)energy=.16;el.style.color=energy>.45?"#c9431f":"#5c5750";el.style.transform=`scale(${1+energy*.1})`;});}},0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

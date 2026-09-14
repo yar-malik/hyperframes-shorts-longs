@@ -1,7 +1,14 @@
-# Google Flow Short — HyperFrames example
+# HyperFrames video-editing examples
 
-One complete, editable vertical short built with [HyperFrames](https://hyperframes.heygen.com/).
-Use this repository as the team reference for how a finished short is structured, checked, previewed, and rendered.
+Two complete, editable examples built with [HyperFrames](https://hyperframes.heygen.com/).
+Use this team repository as the reference for how a short and a long-video hook are structured, checked, previewed, and rendered.
+
+| Example | Format | What it teaches |
+| --- | --- | --- |
+| [Google Flow Short](#google-flow-short) | 1080×1920 | A complete vertical short with six illustrated beats, voice timing, music, and captions. |
+| [GPT-6 Astra long-video hook](examples/long-video-hook/) | 1920×1080 | A raw talking-head hook reframed into a 20% presenter rail with an 80% animated visual canvas. |
+
+## Google Flow Short
 
 ![Composition contact sheet](docs/contact-sheet.jpg)
 
@@ -19,14 +26,35 @@ The Instagram reel is an editing reference only. It inspired the layout, pacing,
 Requirements: Node.js 22+, npm, FFmpeg, and Chrome.
 
 ```bash
-git clone https://github.com/yar-malik/hyperframes-google-flow-short.git
-cd hyperframes-google-flow-short
+git clone https://github.com/yar-malik/hyperframes-shorts-longs.git
+cd hyperframes-shorts-longs
 npm install
 npm run check
 npm run dev
 ```
 
 The Studio preview opens the composition with a seekable timeline. Stop it with `Ctrl+C` when finished.
+
+To open the long-video hook instead:
+
+```bash
+npm run check:hook
+npm run dev:hook
+```
+
+The root commands target both examples where useful:
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Open the vertical Google Flow short in Studio. |
+| `npm run dev:hook` | Open the landscape long-video hook in Studio. |
+| `npm run check` | Validate both compositions. |
+| `npm run check:short` | Validate only the vertical short. |
+| `npm run check:hook` | Validate only the long-video hook. |
+| `npm run render` | Render the vertical short. |
+| `npm run render:hook` | Render the long-video hook. |
+
+Rendered files and Studio-generated thumbnails are intentionally ignored. Commit the editable source and reference assets, not generated output.
 
 ## What to edit
 
@@ -39,6 +67,22 @@ The Studio preview opens the composition with a seekable timeline. Stop it with 
 - `scripts/build.mjs` — rebuilds `index.html` from the script and timing files. It overwrites `index.html`, so commit first.
 
 The six numbered beats in `scripts/build.mjs` are the easiest map of the video. Each beat defines its duration, headline pill, visual card, animation, voice track, and caption timing.
+
+## GPT-6 Astra long-video hook
+
+The landscape example lives in [`examples/long-video-hook/`](examples/long-video-hook/). It turns a 17.94-second talking-head recording into a 16.25-second opening: Yar begins full-screen, moves into a 20% presenter rail, and an animated 80% canvas illustrates the spoken beats.
+
+Start with these files:
+
+- [`examples/long-video-hook/README.md`](examples/long-video-hook/README.md) — purpose, source, and quick-start notes.
+- [`examples/long-video-hook/DESIGN.md`](examples/long-video-hook/DESIGN.md) — layout, palette, typography, and motion direction.
+- [`examples/long-video-hook/EDIT_WALKTHROUGH.md`](examples/long-video-hook/EDIT_WALKTHROUGH.md) — beat-by-beat explanation and adaptation guide.
+- `examples/long-video-hook/index.html` — the complete editable composition.
+- `examples/long-video-hook/index.motion.json` — automated motion expectations checked by HyperFrames.
+- `examples/long-video-hook/transcript.json` — word-level timings for captions.
+- `examples/long-video-hook/source/gpt-6-astra-raw-hook.mp4` — untouched source recording.
+
+To adapt the hook, replace the source video, update the transcript and four beat ranges, then redesign the left-side scenes around the new narration. Keep the visual video muted and use the separate audio element so HyperFrames owns synchronization. Run `npm run check:hook`, inspect the full timeline with `npm run dev:hook`, and render only after that review.
 
 ## Safe editing loop
 
@@ -90,9 +134,17 @@ The TTS script writes new audio and word timings. The build script then regenera
 ├── .media/audio/voice/       # rendered voice beats
 ├── demo/                     # small finished reference render
 ├── docs/contact-sheet.jpg    # visual overview of the beats
+├── examples/long-video-hook/ # landscape talking-head hook example
+│   ├── index.html            # hook composition
+│   ├── index.motion.json     # motion assertions
+│   ├── transcript.json       # word-level source transcript
+│   ├── source/               # original talking-head footage
+│   ├── docs/contact-sheet.jpg
+│   ├── DESIGN.md             # visual direction
+│   └── EDIT_WALKTHROUGH.md   # team adaptation guide
 └── EDITING_REFERENCE.md      # original editing inspiration and style notes
 ```
 
-## Before sharing publicly
+## Media and reuse
 
-This is an internal teaching example. Replace the included portrait, voice, Google Flow screenshots, and music/SFX with assets you have permission to publish before making a derivative repository or video public.
+The code is available under the MIT License. The included presenter footage, portrait, and voice remain © Yar Malik and are included as teaching material; see [`MEDIA_LICENSE.md`](MEDIA_LICENSE.md). Replace personal footage, branded screenshots, music, and sound effects with assets you have permission to publish before releasing a derivative video.

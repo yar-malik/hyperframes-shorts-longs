@@ -1,6 +1,8 @@
 node_modules/
 renders/
 snapshots/
+.hyperframes/
+.thumbnails/
 .DS_Store
 .env
 .env.*

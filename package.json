@@ -4,8 +4,12 @@
   "type": "module",
   "scripts": {
     "dev": "npx --yes hyperframes@0.8.38 preview",
-    "check": "npx --yes hyperframes@0.8.38 check",
+    "dev:hook": "npx --yes hyperframes@0.8.38 preview examples/long-video-hook",
+    "check": "npm run check:short && npm run check:hook",
+    "check:short": "npx --yes hyperframes@0.8.38 check",
+    "check:hook": "npx --yes hyperframes@0.8.38 check examples/long-video-hook",
     "render": "npx --yes hyperframes@0.8.38 render",
+    "render:hook": "npx --yes hyperframes@0.8.38 render examples/long-video-hook",
     "publish": "npx --yes hyperframes@0.8.38 publish"
   },
   "dependencies": {
