@@ -5,7 +5,13 @@ Use this repository as the team reference for how a finished short is structured
 
 ![Composition contact sheet](docs/contact-sheet.jpg)
 
-The finished example is in [`demo/google-flow-short-preview.mp4`](demo/google-flow-short-preview.mp4).
+## Watch and trace the example
+
+- **Published Short:** [The secret to creating AI movies in minutes](https://www.youtube.com/shorts/_YGFZe2RKVo)
+- **Local preview:** [`demo/google-flow-short-preview.mp4`](demo/google-flow-short-preview.mp4)
+- **Research and inspiration:** [`SOURCES.md`](SOURCES.md) records every reference and what we learned from it.
+
+Keep `SOURCES.md` current when changing the topic, structure, or visual style. Add the original URL and a short note about exactly what influenced the work; this makes inspiration traceable without suggesting that the finished edit is a copy.
 
 ## Start here
 

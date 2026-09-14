@@ -3,7 +3,25 @@
   "message": "Google Flow plans the whole video with you before it spends a single credit",
   "handle": "yarmalik",
   "cta": "Full Flow tutorial inside AVC",
+  "published": {
+    "title": "The secret to creating AI movies in minutes",
+    "url": "https://www.youtube.com/shorts/_YGFZe2RKVo"
+  },
   "source": "https://www.youtube.com/watch?v=0vQ7UEe7rLg (Kevin Stratvert, How to Use Google Flow, 2026-07-07)",
+  "sources": [
+    {
+      "role": "primary",
+      "title": "How to Use Google Flow (Step-by-Step Tutorial)",
+      "creator": "Kevin Stratvert",
+      "url": "https://www.youtube.com/watch?v=0vQ7UEe7rLg"
+    },
+    {
+      "role": "additional research",
+      "title": "Google Flow Tutorial 2026 (Complete Step-By-Step Guide)",
+      "creator": "Simon Crowe",
+      "url": "https://www.youtube.com/watch?v=RbvpUAnyZbc"
+    }
+  ],
   "lines": [
     { "text": "Google Flow is now a full AI film studio, but most people still type one prompt into it and hope for the best." },
     { "text": "Start a new project at flow dot google, and before it makes anything, Flow asks you about the vibe, the hero shot and the style." },
