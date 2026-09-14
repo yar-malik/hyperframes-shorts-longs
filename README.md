@@ -1,12 +1,34 @@
-# HyperFrames video-editing examples
+# HyperFrames video and social-content examples
 
-Two complete, editable examples built with [HyperFrames](https://hyperframes.heygen.com/).
-Use this team repository as the reference for how a short and a long-video hook are structured, checked, previewed, and rendered.
+Three complete, editable production examples.
+Use this team repository as the reference for how a short, a long-video hook, and an Instagram carousel are structured, reviewed, rendered, and published.
 
 | Example | Format | Watch | What it teaches |
 | --- | --- | --- | --- |
 | [Google Flow Short](#google-flow-short) | 1080×1920 | [YouTube Short](https://www.youtube.com/shorts/_YGFZe2RKVo) | A complete vertical short with six illustrated beats, voice timing, music, and captions. |
 | [GPT-6 Astra long-video hook](#gpt-6-astra-long-video-hook) | 1920×1080 | [Before (raw)](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) → [After (edit)](https://youtu.be/6h9WkGRd9SU) | A raw talking-head hook that starts full-screen, then shrinks the presenter into a floating side card next to an animated visual canvas. |
+| [Instagram carousel](#instagram-carousel) | 1080×1350 × 8 | [Published post](https://www.instagram.com/yar.claudecodex.mastery/p/DdDeqT8DlzZ/) | A reproducible editorial carousel with an avatar, editable SVG source, PNG exports, caption, references, and publishing checklist. |
+
+## Instagram carousel
+
+![Instagram carousel contact sheet](examples/instagram-carousel/output/carousel-preview.png)
+
+The [`examples/instagram-carousel/`](examples/instagram-carousel/) case study documents the complete process used to turn an Instagram creative reference into an original, personalized eight-slide carousel for `@yar.claudecodex.mastery`.
+
+Start with:
+
+- [`README.md`](examples/instagram-carousel/README.md) — full creation, review, adaptation, and Instagram upload workflow.
+- [`DESIGN.md`](examples/instagram-carousel/DESIGN.md) — canvas, palette, typography, layout, and quality rules.
+- [`REFERENCES.md`](examples/instagram-carousel/REFERENCES.md) — source links, attribution, and included assets.
+- [`scripts/build.mjs`](examples/instagram-carousel/scripts/build.mjs) — editable SVG/PNG generator.
+- [`output/`](examples/instagram-carousel/output/) — all eight upload-ready PNGs and editable SVGs.
+- [`caption.txt`](examples/instagram-carousel/caption.txt) — published caption.
+
+Rebuild all outputs from the repository root:
+
+```bash
+npm run build:carousel
+```
 
 ## Google Flow Short
 

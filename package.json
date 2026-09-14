@@ -8,6 +8,7 @@
     "check": "npm run check:short && npm run check:hook",
     "check:short": "npx --yes hyperframes@0.8.38 check",
     "check:hook": "npx --yes hyperframes@0.8.38 check examples/long-video-hook",
+    "build:carousel": "node examples/instagram-carousel/scripts/build.mjs",
     "render": "npx --yes hyperframes@0.8.38 render",
     "render:hook": "npx --yes hyperframes@0.8.38 render examples/long-video-hook",
     "publish": "npx --yes hyperframes@0.8.38 publish"
@@ -15,5 +16,8 @@
   "dependencies": {
     "@hyperframes/core": "^0.8.38",
     "hyperframes": "^0.8.38"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }

@@ -1,0 +1,17 @@
+I stopped letting Claude approve the work it just made.
+
+The same context that creates an output also remembers every shortcut, assumption and compromise behind it. So of course it says “looks good.”
+
+My fix is a three-critic loop:
+
+1. BRIEF CRITIC — checks every requested outcome.
+2. SYSTEM CRITIC — checks colour, type, spacing and component rules.
+3. RENDER CRITIC — checks the actual pixels for hierarchy, contrast, wrapping and collisions.
+
+Each critic gets a fresh window with only the brief, the rules and the output. Then I patch the failed checks and run it again.
+
+It costs more tokens, so I save it for work where quality compounds: templates, landing pages, design systems and client deliverables.
+
+Save this before your next build. Which critic would catch your biggest mistake?
+
+#ClaudeCode #OpenAICodex #AIAgents #AIAutomation #PromptEngineering #VibeCoding #WebDesign #BuildInPublic
