@@ -7,21 +7,12 @@
     "title": "The secret to creating AI movies in minutes",
     "url": "https://www.youtube.com/shorts/_YGFZe2RKVo"
   },
-  "source": "https://www.youtube.com/watch?v=0vQ7UEe7rLg (Kevin Stratvert, How to Use Google Flow, 2026-07-07)",
-  "sources": [
-    {
-      "role": "primary",
-      "title": "How to Use Google Flow (Step-by-Step Tutorial)",
-      "creator": "Kevin Stratvert",
-      "url": "https://www.youtube.com/watch?v=0vQ7UEe7rLg"
-    },
-    {
-      "role": "additional research",
-      "title": "Google Flow Tutorial 2026 (Complete Step-By-Step Guide)",
-      "creator": "Simon Crowe",
-      "url": "https://www.youtube.com/watch?v=RbvpUAnyZbc"
-    }
-  ],
+  "editing_reference": {
+    "role": "visual and editing inspiration",
+    "title": "Own a full AI agency for $0",
+    "creator": "Alex / nocodealex",
+    "url": "https://www.instagram.com/nocodealex/reel/Dc4cu6cySSA/"
+  },
   "lines": [
     { "text": "Google Flow is now a full AI film studio, but most people still type one prompt into it and hope for the best." },
     { "text": "Start a new project at flow dot google, and before it makes anything, Flow asks you about the vibe, the hero shot and the style." },

@@ -5,13 +5,14 @@ Use this repository as the team reference for how a finished short is structured
 
 ![Composition contact sheet](docs/contact-sheet.jpg)
 
-## Watch and trace the example
+## Watch and study the example
 
 - **Published Short:** [The secret to creating AI movies in minutes](https://www.youtube.com/shorts/_YGFZe2RKVo)
 - **Local preview:** [`demo/google-flow-short-preview.mp4`](demo/google-flow-short-preview.mp4)
-- **Research and inspiration:** [`SOURCES.md`](SOURCES.md) records every reference and what we learned from it.
+- **Editing inspiration:** [Alex / nocodealex — “Own a full AI agency for $0”](https://www.instagram.com/nocodealex/reel/Dc4cu6cySSA/)
+- **Style notes:** [`EDITING_REFERENCE.md`](EDITING_REFERENCE.md) explains which editing patterns informed this example.
 
-Keep `SOURCES.md` current when changing the topic, structure, or visual style. Add the original URL and a short note about exactly what influenced the work; this makes inspiration traceable without suggesting that the finished edit is a copy.
+The Instagram reel is an editing reference only. It inspired the layout, pacing, progress rail, headline card, rounded visual stage, and word-by-word captions. It is not the factual source for the Google Flow script.
 
 ## Start here
 
@@ -29,7 +30,7 @@ The Studio preview opens the composition with a seekable timeline. Stop it with 
 
 ## What to edit
 
-- `script.json` — the six spoken lines and the source/message notes.
+- `script.json` — the six spoken lines, project message, published link, and editing reference.
 - `index.html` — the complete 1080×1920 composition: layout, styling, clips, captions, and GSAP timelines.
 - `public/broll/` — screenshots shown inside the animated cards.
 - `public/sfx/` and `public/bgm.wav` — sound effects and music.
@@ -88,7 +89,8 @@ The TTS script writes new audio and word timings. The build script then regenera
 ├── public/                    # B-roll, portrait, music, SFX, font, logo
 ├── .media/audio/voice/       # rendered voice beats
 ├── demo/                     # small finished reference render
-└── docs/contact-sheet.jpg    # visual overview of the beats
+├── docs/contact-sheet.jpg    # visual overview of the beats
+└── EDITING_REFERENCE.md      # original editing inspiration and style notes
 ```
 
 ## Before sharing publicly
