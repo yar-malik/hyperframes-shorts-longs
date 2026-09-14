@@ -1,0 +1,15 @@
+{
+  "project": "google-flow-short",
+  "message": "Google Flow plans the whole video with you before it spends a single credit",
+  "handle": "yarmalik",
+  "cta": "Full Flow tutorial inside AVC",
+  "source": "https://www.youtube.com/watch?v=0vQ7UEe7rLg (Kevin Stratvert, How to Use Google Flow, 2026-07-07)",
+  "lines": [
+    { "text": "Google Flow is now a full AI film studio, but most people still type one prompt into it and hope for the best." },
+    { "text": "Start a new project at flow dot google, and before it makes anything, Flow asks you about the vibe, the hero shot and the style." },
+    { "text": "Then it writes the whole storyboard, with characters, camera angles and dialogue. Editing that text costs zero credits, so fix everything here." },
+    { "text": "When the storyboard looks right, it generates every clip at once. Six shots cost ninety credits, and they actually look like one film." },
+    { "text": "Create a character once, tag it with the at sign, and it stays the same person in every shot. You can even turn yourself into one." },
+    { "text": "Then drop the clips on the timeline, trim them and export. Save this, and try it before you make your next video." }
+  ]
+}
