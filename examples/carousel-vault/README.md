@@ -9,6 +9,7 @@ This folder gives the team finished visual references to study alongside the edi
 ![DeepSeek carousel contact sheet](deepseek-agent-harness/carousel-preview.png)
 
 - [`deepseek-agent-harness/README.md`](deepseek-agent-harness/README.md) explains what to study and how to adapt it.
+- [Published Instagram post](https://www.instagram.com/p/DdL814LjkIE/?img_index=1) shows the live swipe sequence.
 - Six numbered 1080×1350 PNGs are included in upload order.
 - This is the carousel visible in the screenshot supplied with the repository request.
 - It is a visual reference, not the editable implementation. Use the SVG/PNG generator in [`../instagram-carousel/`](../instagram-carousel/) to learn the reproducible build.

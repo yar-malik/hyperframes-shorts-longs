@@ -2,6 +2,8 @@
 
 This is a finished six-slide Instagram carousel from Yar Malik's content vault and the visual shown in the screenshot supplied with this repository update.
 
+**Published post:** [DeepSeek just opened the agent loop](https://www.instagram.com/p/DdL814LjkIE/?img_index=1)
+
 ![Six-slide contact sheet](carousel-preview.png)
 
 ## What to study
