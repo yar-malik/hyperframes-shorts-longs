@@ -7,10 +7,13 @@ This example shows how to turn a raw talking-head hook into a designed 16:9 open
 ## Source
 
 - **Raw hook:** [Google Drive](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing)
+- **Finished edit:** [Unlisted YouTube video](https://youtu.be/1R9FT4CnzcE)
 - **Local source file:** [`source/gpt-6-astra-raw-hook.mp4`](source/gpt-6-astra-raw-hook.mp4)
 - **Word timings:** [`transcript.json`](transcript.json)
 
 The raw footage is 17.94 seconds. The edit uses the spoken section through 16.25 seconds and removes the trailing pause.
+
+For team training, open the raw hook and finished edit side by side. Compare the original full-screen talking head with the final presenter rail, animated visual canvas, designed captions, scene changes, and tightened ending.
 
 ## Editing idea
 

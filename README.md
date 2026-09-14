@@ -72,6 +72,15 @@ The six numbered beats in `scripts/build.mjs` are the easiest map of the video. 
 
 The landscape example lives in [`examples/long-video-hook/`](examples/long-video-hook/). It turns a 17.94-second talking-head recording into a 16.25-second opening: Yar begins full-screen, moves into a 20% presenter rail, and an animated 80% canvas illustrates the spoken beats.
 
+### Watch the before → after
+
+| Version | Link | What to notice |
+| --- | --- | --- |
+| Before — raw talking-head hook | [Open the source recording in Google Drive](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) | Original framing, pacing, voice, and trailing pause. |
+| After — HyperFrames edit | [Watch the unlisted YouTube video](https://youtu.be/1R9FT4CnzcE) | 20% presenter rail, 80% animated canvas, designed captions, visual beat changes, and tightened ending. |
+
+Open the two links side by side when teaching the edit. The voice performance and source footage stay intact; the transformation comes from layout, timing, typography, captions, and motion design.
+
 Start with these files:
 
 - [`examples/long-video-hook/README.md`](examples/long-video-hook/README.md) — purpose, source, and quick-start notes.
