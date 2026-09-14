@@ -8,4 +8,6 @@ Google, Google Flow, and other referenced product names and screenshots belong t
 
 The Jack Roberts Instagram carousel linked in `examples/instagram-carousel/REFERENCES.md` is a creative reference only and is not redistributed in this repository. The included CCM carousel copy, diagrams, and generated artwork are original; Yar Malik's likeness remains excluded from the MIT grant.
 
+The finished DeepSeek carousel PNGs under `examples/carousel-vault/deepseek-agent-harness/` are included as authorized teaching material from Yar Malik's content vault. They may be studied by the team, but Yar Malik's likeness remains excluded from the MIT grant and must be replaced before publishing an unrelated derivative.
+
 Before publishing a derivative video, replace any footage, voice, music, sound effects, screenshots, or brand assets for which you do not have distribution rights.

@@ -20,9 +20,11 @@ Start with:
 - [`README.md`](examples/instagram-carousel/README.md) — full creation, review, adaptation, and Instagram upload workflow.
 - [`DESIGN.md`](examples/instagram-carousel/DESIGN.md) — canvas, palette, typography, layout, and quality rules.
 - [`REFERENCES.md`](examples/instagram-carousel/REFERENCES.md) — source links, attribution, and included assets.
+- [`PROMPTS.md`](examples/instagram-carousel/PROMPTS.md) — reusable master prompt plus brief, system, and render review prompts.
 - [`scripts/build.mjs`](examples/instagram-carousel/scripts/build.mjs) — editable SVG/PNG generator.
 - [`output/`](examples/instagram-carousel/output/) — all eight upload-ready PNGs and editable SVGs.
 - [`caption.txt`](examples/instagram-carousel/caption.txt) — published caption.
+- [`examples/carousel-vault/`](examples/carousel-vault/) — curated, authorized visual examples, including the six-slide DeepSeek carousel shown in the supplied screenshot.
 
 Rebuild all outputs from the repository root:
 
@@ -75,6 +77,7 @@ The root commands target both examples where useful:
 | `npm run check:hook` | Validate only the long-video hook. |
 | `npm run render` | Render the vertical short. |
 | `npm run render:hook` | Render the long-video hook. |
+| `npm run build:carousel` | Rebuild the carousel PNGs, editable SVGs, caption, and contact sheet. |
 
 Rendered files and Studio-generated thumbnails are intentionally ignored. Commit the editable source and reference assets, not generated output.
 
@@ -175,6 +178,8 @@ The TTS script writes new audio and word timings. The build script then regenera
 │   ├── docs/contact-sheet.jpg
 │   ├── DESIGN.md             # visual direction
 │   └── EDIT_WALKTHROUGH.md   # team adaptation guide
+├── examples/instagram-carousel/ # editable carousel, outputs, and prompt pack
+├── examples/carousel-vault/  # authorized finished references to study
 └── EDITING_REFERENCE.md      # original editing inspiration and style notes
 ```
 

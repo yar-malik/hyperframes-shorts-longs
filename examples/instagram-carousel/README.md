@@ -9,6 +9,7 @@ This folder contains the complete, reproducible process used to create and publi
 - **Published carousel:** [@yar.claudecodex.mastery — Claude's three-critic loop](https://www.instagram.com/yar.claudecodex.mastery/p/DdDeqT8DlzZ/)
 - **Creative reference:** [Jack Roberts — “Steal the loop that 10X'd Claude Design”](https://www.instagram.com/p/DdDJAbFFazu/)
 - **Reference notes and attribution:** [`REFERENCES.md`](REFERENCES.md)
+- **Reusable prompt pack:** [`PROMPTS.md`](PROMPTS.md)
 
 The reference informed the editorial rhythm: a strong hook, large black/orange type, alternating paper and dark slides, one idea per page, and image-led moments. The copy, diagrams, styling, and composition in this example are original and adapted to Yar's CCM Field Notes brand.
 
@@ -19,6 +20,7 @@ instagram-carousel/
 ├── README.md
 ├── DESIGN.md
 ├── REFERENCES.md
+├── PROMPTS.md
 ├── caption.txt
 ├── assets/
 │   └── yar-avatar.jpg
@@ -36,6 +38,7 @@ instagram-carousel/
 - `output/*.png` are upload-ready Instagram files at 1080×1350.
 - `caption.txt` contains the exact published caption.
 - `output/carousel-preview.png` is a contact sheet for quick review.
+- `PROMPTS.md` contains the reconstructed master prompt and three independent review prompts used to reproduce the method.
 
 ## Rebuild the carousel
 
@@ -136,6 +139,10 @@ Keep the eight-slide narrative roles, then change:
 - The caption and hashtags.
 
 Prefer rewriting the `slides` array in `scripts/build.mjs` over editing generated SVG files directly. Rebuild afterward so the PNGs, SVGs, caption, and preview stay in sync.
+
+Start with the input checklist and master creation prompt in [`PROMPTS.md`](PROMPTS.md). The prompt deliberately separates factual sources, creative references, brand rules, portrait rights, and output requirements so the result is easier to review and safe to share.
+
+For another finished visual direction, browse the authorized [`DeepSeek agent-harness example`](../carousel-vault/deepseek-agent-harness/README.md) from the internal carousel vault.
 
 ## Rights and reuse
 

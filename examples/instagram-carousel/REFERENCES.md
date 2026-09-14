@@ -19,6 +19,12 @@ No reference images, video, or copied slide artwork are stored in this repositor
 - [Yar Malik — Claude Codex Mastery](https://www.instagram.com/yar.claudecodex.mastery/)
 - [Published eight-slide carousel](https://www.instagram.com/yar.claudecodex.mastery/p/DdDeqT8DlzZ/)
 
+## Internal visual reference supplied for this repository
+
+- [`DeepSeek agent-harness carousel`](../carousel-vault/deepseek-agent-harness/README.md) — the six-slide, portrait-led carousel shown in the supplied screenshot. The authorized final exports and contact sheet are included locally so teammates can study the complete sequence.
+
+The screenshot itself was used only to identify the matching vault item. The repository contains the original 1080×1350 exports instead of the lower-quality browser screenshot.
+
 ## Downloaded and generated assets included here
 
 - [`assets/yar-avatar.jpg`](assets/yar-avatar.jpg) — Yar Malik's account portrait, downloaded from his authorized Instagram account for personalization.
