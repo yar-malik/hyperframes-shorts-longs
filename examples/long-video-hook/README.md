@@ -7,7 +7,7 @@ This example shows how to turn a raw talking-head hook into a designed 16:9 open
 ## Source
 
 - **Raw hook:** [Google Drive](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing)
-- **Finished edit:** [Unlisted YouTube video](https://youtu.be/1R9FT4CnzcE)
+- **Finished edit:** [Unlisted YouTube video](https://youtu.be/6h9WkGRd9SU)
 - **Local source file:** [`source/gpt-6-astra-raw-hook.mp4`](source/gpt-6-astra-raw-hook.mp4)
 - **Word timings:** [`transcript.json`](transcript.json)
 

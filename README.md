@@ -6,7 +6,7 @@ Use this team repository as the reference for how a short and a long-video hook 
 | Example | Format | Watch | What it teaches |
 | --- | --- | --- | --- |
 | [Google Flow Short](#google-flow-short) | 1080×1920 | [YouTube Short](https://www.youtube.com/shorts/_YGFZe2RKVo) | A complete vertical short with six illustrated beats, voice timing, music, and captions. |
-| [GPT-6 Astra long-video hook](#gpt-6-astra-long-video-hook) | 1920×1080 | [Before (raw)](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) → [After (edit)](https://youtu.be/1R9FT4CnzcE) | A raw talking-head hook that starts full-screen, then shrinks the presenter into a floating side card next to an animated visual canvas. |
+| [GPT-6 Astra long-video hook](#gpt-6-astra-long-video-hook) | 1920×1080 | [Before (raw)](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) → [After (edit)](https://youtu.be/6h9WkGRd9SU) | A raw talking-head hook that starts full-screen, then shrinks the presenter into a floating side card next to an animated visual canvas. |
 
 ## Google Flow Short
 
@@ -79,7 +79,7 @@ The landscape example lives in [`examples/long-video-hook/`](examples/long-video
 | Version | Link | What to notice |
 | --- | --- | --- |
 | Before — raw talking-head hook | [Open the source recording in Google Drive](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) (also in the repo: [`source/gpt-6-astra-raw-hook.mp4`](examples/long-video-hook/source/gpt-6-astra-raw-hook.mp4)) | Original framing, pacing, voice, and trailing pause. |
-| After — HyperFrames edit | [Watch the unlisted YouTube video](https://youtu.be/1R9FT4CnzcE) | Animated canvas, designed captions, visual beat changes, and tightened ending. This upload shows the earlier 20% presenter-rail layout; the composition now uses the floating side card. |
+| After — HyperFrames edit | [Watch the unlisted YouTube video](https://youtu.be/6h9WkGRd9SU) | Full-screen open, floating presenter card, animated canvas, designed captions, visual beat changes, and tightened ending. |
 
 Open the two links side by side when teaching the edit. The voice performance and source footage stay intact; the transformation comes from layout, timing, typography, captions, and motion design.
 
