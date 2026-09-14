@@ -13,14 +13,14 @@ This example shows how to turn a raw talking-head hook into a designed 16:9 open
 
 The raw footage is 17.94 seconds. The edit uses the spoken section through 16.25 seconds and removes the trailing pause.
 
-For team training, open the raw hook and finished edit side by side. Compare the original full-screen talking head with the final presenter rail, animated visual canvas, designed captions, scene changes, and tightened ending.
+For team training, open the raw hook and finished edit side by side. Compare the original full-screen talking head with the floating presenter card, animated visual canvas, designed captions, scene changes, and tightened ending.
 
 ## Editing idea
 
-The presenter begins full-screen so the first word has human impact. Within the first second, the frame rapidly restructures:
+The presenter begins full-screen so the first word has human impact. After three seconds, the frame restructures:
 
-- Yar moves into a narrow right-side rail occupying 20% of the screen.
-- The left 80% becomes the main visual canvas.
+- Yar shrinks into a rounded picture-in-picture card floating on the right.
+- A rounded visual canvas window lands on the left and carries the explanation.
 - The canvas changes with the narration: Astra engine → workflow → three inputs → motion outputs.
 - Word-level captions follow the supplied voice timing.
 - The source video remains intact; the crop, timing, canvas, and motion are all editable in `index.html`.

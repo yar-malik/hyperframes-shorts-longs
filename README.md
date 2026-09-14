@@ -3,10 +3,10 @@
 Two complete, editable examples built with [HyperFrames](https://hyperframes.heygen.com/).
 Use this team repository as the reference for how a short and a long-video hook are structured, checked, previewed, and rendered.
 
-| Example | Format | What it teaches |
-| --- | --- | --- |
-| [Google Flow Short](#google-flow-short) | 1080×1920 | A complete vertical short with six illustrated beats, voice timing, music, and captions. |
-| [GPT-6 Astra long-video hook](examples/long-video-hook/) | 1920×1080 | A raw talking-head hook reframed into a 20% presenter rail with an 80% animated visual canvas. |
+| Example | Format | Watch | What it teaches |
+| --- | --- | --- | --- |
+| [Google Flow Short](#google-flow-short) | 1080×1920 | [YouTube Short](https://www.youtube.com/shorts/_YGFZe2RKVo) | A complete vertical short with six illustrated beats, voice timing, music, and captions. |
+| [GPT-6 Astra long-video hook](#gpt-6-astra-long-video-hook) | 1920×1080 | [Before (raw)](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) → [After (edit)](https://youtu.be/1R9FT4CnzcE) | A raw talking-head hook that starts full-screen, then shrinks the presenter into a floating side card next to an animated visual canvas. |
 
 ## Google Flow Short
 
@@ -70,14 +70,16 @@ The six numbered beats in `scripts/build.mjs` are the easiest map of the video. 
 
 ## GPT-6 Astra long-video hook
 
-The landscape example lives in [`examples/long-video-hook/`](examples/long-video-hook/). It turns a 17.94-second talking-head recording into a 16.25-second opening: Yar begins full-screen, moves into a 20% presenter rail, and an animated 80% canvas illustrates the spoken beats.
+The landscape example lives in [`examples/long-video-hook/`](examples/long-video-hook/). It turns a 17.94-second talking-head recording into a 16.25-second opening: Yar stays full-screen for the first three seconds, then shrinks into a floating picture-in-picture card on the right while a rounded animated canvas illustrates the spoken beats.
+
+![Long-video hook contact sheet](examples/long-video-hook/docs/contact-sheet.jpg)
 
 ### Watch the before → after
 
 | Version | Link | What to notice |
 | --- | --- | --- |
-| Before — raw talking-head hook | [Open the source recording in Google Drive](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) | Original framing, pacing, voice, and trailing pause. |
-| After — HyperFrames edit | [Watch the unlisted YouTube video](https://youtu.be/1R9FT4CnzcE) | 20% presenter rail, 80% animated canvas, designed captions, visual beat changes, and tightened ending. |
+| Before — raw talking-head hook | [Open the source recording in Google Drive](https://drive.google.com/file/d/1C4yEdXUr6sSTA79I0i7gM4Sp5X937NXD/view?usp=sharing) (also in the repo: [`source/gpt-6-astra-raw-hook.mp4`](examples/long-video-hook/source/gpt-6-astra-raw-hook.mp4)) | Original framing, pacing, voice, and trailing pause. |
+| After — HyperFrames edit | [Watch the unlisted YouTube video](https://youtu.be/1R9FT4CnzcE) | Animated canvas, designed captions, visual beat changes, and tightened ending. This upload shows the earlier 20% presenter-rail layout; the composition now uses the floating side card. |
 
 Open the two links side by side when teaching the edit. The voice performance and source footage stay intact; the transformation comes from layout, timing, typography, captions, and motion design.
 
@@ -86,10 +88,10 @@ Start with these files:
 - [`examples/long-video-hook/README.md`](examples/long-video-hook/README.md) — purpose, source, and quick-start notes.
 - [`examples/long-video-hook/DESIGN.md`](examples/long-video-hook/DESIGN.md) — layout, palette, typography, and motion direction.
 - [`examples/long-video-hook/EDIT_WALKTHROUGH.md`](examples/long-video-hook/EDIT_WALKTHROUGH.md) — beat-by-beat explanation and adaptation guide.
-- `examples/long-video-hook/index.html` — the complete editable composition.
-- `examples/long-video-hook/index.motion.json` — automated motion expectations checked by HyperFrames.
-- `examples/long-video-hook/transcript.json` — word-level timings for captions.
-- `examples/long-video-hook/source/gpt-6-astra-raw-hook.mp4` — untouched source recording.
+- [`examples/long-video-hook/index.html`](examples/long-video-hook/index.html) — the complete editable composition.
+- [`examples/long-video-hook/index.motion.json`](examples/long-video-hook/index.motion.json) — automated motion expectations checked by HyperFrames.
+- [`examples/long-video-hook/transcript.json`](examples/long-video-hook/transcript.json) — word-level timings for captions.
+- [`examples/long-video-hook/source/gpt-6-astra-raw-hook.mp4`](examples/long-video-hook/source/gpt-6-astra-raw-hook.mp4) — untouched source recording.
 
 To adapt the hook, replace the source video, update the transcript and four beat ranges, then redesign the left-side scenes around the new narration. Keep the visual video muted and use the separate audio element so HyperFrames owns synchronization. Run `npm run check:hook`, inspect the full timeline with `npm run dev:hook`, and render only after that review.
 

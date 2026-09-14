@@ -15,14 +15,15 @@
       * { box-sizing: border-box; }
       html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
       body { font-family: "Space Mono", monospace; }
-      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); color: var(--ink); }
-      .presenter-clip { position: absolute; inset: 0; overflow: hidden; z-index: 1; will-change: clip-path; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: radial-gradient(circle at 18% 12%, rgba(217,76,35,.28), transparent 38%), radial-gradient(circle at 88% 92%, rgba(39,71,97,.55), transparent 45%), var(--ink); color: var(--ink); }
+      .presenter-clip { position: absolute; inset: 0; overflow: hidden; z-index: 5; clip-path: inset(0px 0px 0px 0px round 0px); will-change: clip-path; }
+      .pip-frame { position: absolute; left: 1520px; top: 260px; width: 340px; height: 560px; z-index: 4; border-radius: 28px; background: var(--ink); box-shadow: 12px 14px 0 var(--orange); opacity: 0; }
       .presenter-camera { position: absolute; inset: 0; width: 1920px; height: 1080px; transform-origin: 50% 50%; will-change: transform; }
       #presenter-video { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; }
       .canvas {
-        position: absolute; inset: 0 384px 0 0; width: 1536px; height: 1080px; overflow: hidden; z-index: 3;
+        position: absolute; left: 56px; top: 54px; width: 1536px; height: 1080px; overflow: hidden; z-index: 3; border-radius: 32px; transform-origin: 0 0; transform: scale(.9); box-shadow: 0 30px 80px rgba(0,0,0,.45); opacity: 0;
         background: radial-gradient(circle at 76% 20%, rgba(241,96,50,.16), transparent 27%), linear-gradient(rgba(23,21,18,.045) 2px, transparent 2px), linear-gradient(90deg, rgba(23,21,18,.045) 2px, transparent 2px), var(--paper);
-        background-size: auto, 62px 62px, 62px 62px, auto; will-change: clip-path;
+        background-size: auto, 62px 62px, 62px 62px, auto; will-change: transform, opacity;
       }
       .canvas::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .12; mix-blend-mode: multiply; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E"); }
       .rail { position: absolute; top: 34px; left: 58px; right: 58px; height: 38px; z-index: 20; display: flex; align-items: center; gap: 18px; }
@@ -81,16 +82,18 @@
       .shape-b { width: 120px; height: 120px; margin: -60px; background: var(--ink); border-radius: 20px; }
       .shape-c { width: 150px; height: 12px; margin: -6px -75px; background: var(--orange); box-shadow: 0 -42px 0 var(--orange), 0 42px 0 var(--orange); }
       .final-lockup { position: absolute; left: 66px; bottom: 60px; width: 700px; padding-top: 24px; border-top: 5px solid var(--orange); font-size: 28px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
-      .caption { position: absolute; left: 66px; right: 66px; bottom: 48px; min-height: 104px; z-index: 30; display: flex; align-items: flex-end; flex-wrap: wrap; align-content: flex-end; gap: 0 16px; padding: 18px 24px; border: 3px solid var(--ink); border-radius: 20px; background: rgba(243,238,228,.95); box-shadow: 9px 9px 0 var(--orange); font-family: "Archivo Black", sans-serif; font-size: 40px; line-height: 1.08; text-transform: uppercase; }
+      .caption { position: absolute; left: 66px; right: 66px; bottom: 48px; min-height: 104px; z-index: 30; display: flex; align-items: flex-end; flex-wrap: wrap; align-content: flex-end; gap: 0 24px; padding: 18px 24px; border: 3px solid var(--ink); border-radius: 20px; background: rgba(243,238,228,.95); box-shadow: 9px 9px 0 var(--orange); font-family: "Archivo Black", sans-serif; font-size: 40px; line-height: 1.08; text-transform: uppercase; }
       .caption-word { display: inline-block; color: #5c5750; transform-origin: 50% 60%; }
-      .presenter-divider { position: absolute; left: 1530px; top: 0; width: 12px; height: 1080px; background: var(--orange); z-index: 8; transform-origin: center top; }
-      .presenter-tag { position: absolute; right: 24px; top: 25px; z-index: 9; padding: 10px 13px; background: var(--orange); color: var(--ink); font-size: 16px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+      .presenter-tag { position: absolute; left: 1536px; top: 276px; z-index: 9; opacity: 0; padding: 10px 13px; background: var(--orange); color: var(--ink); font-size: 16px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
       .flash-title { position: absolute; left: 72px; top: 82px; z-index: 12; padding: 22px 28px 28px; color: var(--paper); background: var(--ink); font-family: "Archivo Black", sans-serif; font-size: 132px; line-height: .9; letter-spacing: -.05em; text-transform: uppercase; box-shadow: 10px 10px 0 var(--orange); }
+      .caption-full { position: absolute; left: 280px; right: 280px; bottom: 70px; font-size: 54px; justify-content: center; }
     </style>
   </head>
   <body>
     <div data-hf-id="hf-rih0" id="root" data-composition-id="main" data-start="0" data-duration="16.25" data-width="1920" data-height="1080">
       <div data-hf-id="hf-l3ha" class="presenter-clip" id="presenter-clip"><div data-hf-id="hf-zea7" class="presenter-camera" id="presenter-camera" data-layout-allow-overflow=""><video data-hf-id="hf-8bh0" id="presenter-video" class="clip" src="source/gpt-6-astra-raw-hook.mp4" muted playsinline data-start="0" data-duration="16.25" data-track-index="0"></video></div></div>
+      <div id="pip-frame" class="pip-frame"></div>
+      <div id="caption-0" class="clip caption caption-full" data-start="0" data-duration="3" data-track-index="9" data-layout-allow-caption-zone=""></div>
       <audio data-hf-id="hf-3fse" id="presenter-audio" src="source/gpt-6-astra-raw-hook.mp4" data-start="0" data-duration="16.25" data-track-index="10" data-volume="1"></audio>
       <div data-hf-id="hf-v4z3" id="flash-title" class="flash-title" data-layout-allow-overlap="">GPT-6<br data-hf-id="hf-x5px">ASTRA</div>
       <main data-hf-id="hf-mtfy" id="canvas" class="canvas">
@@ -112,16 +115,17 @@
           <div data-hf-id="hf-xnzn" class="eyebrow"><i data-hf-id="hf-wa91" class="eyebrow-dot"></i> Output / 04</div><h2 data-hf-id="hf-eb9o" id="scene-four-title" class="display scene-four-title">Every motion <span data-hf-id="hf-nehy" class="orange">designed.</span></h2>
           <div data-hf-id="hf-6t6s" class="output-wall"><article data-hf-id="hf-jct6" id="output-a" class="output-card"><div data-hf-id="hf-akyh" class="shape-a"></div></article><article data-hf-id="hf-bcq1" id="output-b" class="output-card"><div data-hf-id="hf-ej2i" class="shape-b"></div></article><article data-hf-id="hf-en1c" id="output-c" class="output-card"><div data-hf-id="hf-kosb" class="shape-c"></div></article></div><div data-hf-id="hf-ipz2" id="final-lockup" class="final-lockup">Text + URL + reference → full motion canvas</div>
         </section>
-        <div data-hf-id="hf-k37n" id="caption-1" class="clip caption" data-start="0" data-duration="5.28" data-track-index="8" data-layout-allow-caption-zone=""></div>
+        <div data-hf-id="hf-k37n" id="caption-1" class="clip caption" data-start="3" data-duration="2.28" data-track-index="8" data-layout-allow-caption-zone=""></div>
         <div data-hf-id="hf-n32v" id="caption-2" class="clip caption" data-start="5.28" data-duration="2.78" data-track-index="8" data-layout-allow-caption-zone=""></div>
         <div data-hf-id="hf-ei6e" id="caption-3" class="clip caption" data-start="8.06" data-duration="4.31" data-track-index="8" data-layout-allow-caption-zone=""></div>
         <div data-hf-id="hf-uulh" id="caption-4" class="clip caption" data-start="12.37" data-duration="3.88" data-track-index="8" data-layout-allow-caption-zone=""></div>
       </main>
-      <div data-hf-id="hf-0ppu" id="presenter-divider" class="presenter-divider"></div><div data-hf-id="hf-hvof" id="presenter-tag" class="presenter-tag">Yar // raw hook</div>
+      <div data-hf-id="hf-hvof" id="presenter-tag" class="presenter-tag">Yar // raw hook</div>
     </div>
     <script>
       const WORDS = [
-        ["caption-1", [["GPT-6",0,.85],["Astra",.88,1.46],["is",1.46,1.7],["the",1.7,2.07],["greatest",2.07,3.06],["model",3.06,3.71],["we've",3.84,4.09],["got",4.09,4.2],["for",4.31,4.45],["motion",4.45,4.79],["design",4.8,5.28]]],
+        ["caption-0", [["GPT-6",0,.85],["Astra",.88,1.46],["is",1.46,1.7],["the",1.7,2.07],["greatest",2.07,3]]],
+        ["caption-1", [["model",3.06,3.71],["we've",3.84,4.09],["got",4.09,4.2],["for",4.31,4.45],["motion",4.45,4.79],["design",4.8,5.28]]],
         ["caption-2", [["Today",5.58,5.78],["I'm",5.78,6],["going",6,6.14],["to",6.14,6.28],["teach",6.28,6.64],["you",6.64,6.86],["how",7.01,7.08],["to",7.08,7.22],["unlock",7.5,7.66],["it",7.66,8.06]]],
         ["caption-3", [["Give",8.97,9.25],["it",9.25,9.42],["a",9.42,9.46],["text",9.46,9.73],["prompt",9.74,10.3],["a",10.3,10.37],["URL",10.37,10.56],["website",10.64,11.07],["and",11.07,11.25],["a",11.29,11.35],["reference",11.35,11.98],["image",11.98,12.26]]],
         ["caption-4", [["And",12.37,12.54],["it",12.54,12.68],["creates",12.68,13.2],["every",13.2,13.67],["motion",14.07,14.24],["design",14.56,14.81],["out",14.81,15.09],["there",15.09,15.54],["for",15.56,15.84],["you",15.84,16.18]]]
@@ -129,13 +133,16 @@
       const captionWords = [];
       WORDS.forEach(([id, words]) => { const holder = document.getElementById(id); words.forEach(([text,start,end]) => { const span = document.createElement("span"); span.className = "caption-word"; span.textContent = text; holder.appendChild(span); captionWords.push({el:span,start,end}); }); });
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#flash-title", {opacity:0,scale:1.34,x:-90}, {opacity:1,scale:1,x:0,duration:.2,ease:"expo.out"}, .06).to("#flash-title", {opacity:0,x:-120,duration:.16,ease:"power3.in"}, .48).set("#flash-title", {opacity:0,visibility:"hidden"}, .64);
-      tl.fromTo("#canvas", {clipPath:"inset(0 100% 0 0)"}, {clipPath:"inset(0 0% 0 0)",duration:.46,ease:"expo.out"}, .23);
-      tl.fromTo("#presenter-clip", {clipPath:"inset(0 0% 0 0)"}, {clipPath:"inset(0 0% 0 80%)",duration:.55,ease:"power4.inOut"}, .18);
-      tl.to("#presenter-camera", {x:80,scale:1.03,duration:.1,ease:"power3.in"}, .18).to("#presenter-camera", {x:610,scale:1.18,duration:.1,ease:"none"}, .28).to("#presenter-camera", {x:770,scale:1.3,duration:.34,ease:"power4.out"}, .38);
-      tl.fromTo("#presenter-divider", {scaleY:0}, {scaleY:1,duration:.34,ease:"expo.out"}, .3).fromTo("#presenter-tag", {opacity:0,y:-32}, {opacity:1,y:0,duration:.24,ease:"back.out(1.8)"}, .5);
-      [["#wf-gpt",.24,88,.19],["#wf-astra",.39,62,.16],["#wf-motion",.51,44,.13]].forEach(([selector,at,y,duration]) => { tl.set(selector,{opacity:1,y},at); tl.to(selector,{y:0,duration,ease:"power4.out"},at); });
-      tl.fromTo("#motion-console", {opacity:0,x:110,rotation:3}, {opacity:1,x:0,rotation:0,duration:.5,ease:"back.out(1.45)"}, .42).fromTo(".mini-fill", {scaleX:0}, {scaleX:1,duration:1.15,stagger:.12,ease:"power3.out"}, .82).to("#orbit", {rotation:330,duration:4.1,ease:"none"}, .7).to("#astra-core", {rotation:-18,scale:1.09,duration:.8,yoyo:true,repeat:4,ease:"sine.inOut"}, .75);
+      // 0–3s: full-screen presenter with a slow push-in.
+      tl.fromTo("#presenter-camera", {scale:1}, {scale:1.06,duration:3,ease:"sine.inOut"}, 0);
+      tl.fromTo("#flash-title", {opacity:0,scale:1.34,x:-90}, {opacity:1,scale:1,x:0,duration:.2,ease:"expo.out"}, .06).to("#flash-title", {opacity:0,x:-120,duration:.2,ease:"power3.in"}, 2.55).set("#flash-title", {opacity:0,visibility:"hidden"}, 2.76);
+      // 3s: presenter shrinks into the floating right-side card while the canvas window lands.
+      tl.to("#presenter-clip", {clipPath:"inset(260px 60px 260px 1520px round 28px)",duration:.75,ease:"power4.inOut"}, 3);
+      tl.to("#presenter-camera", {x:813,y:10,scale:.8,duration:.75,ease:"power4.inOut"}, 3);
+      tl.fromTo("#canvas", {opacity:0,scale:.8,y:40}, {opacity:1,scale:.9,y:0,duration:.6,ease:"expo.out"}, 3.2);
+      tl.fromTo("#pip-frame", {opacity:0}, {opacity:1,duration:.2,ease:"power2.out"}, 3.6).fromTo("#presenter-tag", {opacity:0,y:-24}, {opacity:1,y:0,duration:.24,ease:"back.out(1.8)"}, 3.8);
+      [["#wf-gpt",3.4,88,.19],["#wf-astra",3.55,62,.16],["#wf-motion",3.67,44,.13]].forEach(([selector,at,y,duration]) => { tl.set(selector,{opacity:1,y},at); tl.to(selector,{y:0,duration,ease:"power4.out"},at); });
+      tl.fromTo("#motion-console", {opacity:0,x:110,rotation:3}, {opacity:1,x:0,rotation:0,duration:.5,ease:"back.out(1.45)"}, 3.58).fromTo(".mini-fill", {scaleX:0}, {scaleX:1,duration:1.15,stagger:.12,ease:"power3.out"}, 3.9).fromTo("#orbit", {rotation:0}, {rotation:200,duration:2,ease:"none"}, 3.3).to("#astra-core", {rotation:-18,scale:1.09,duration:.8,yoyo:true,repeat:1,ease:"sine.inOut"}, 3.6);
       tl.fromTo("#scene-two-title", {opacity:0,x:-100,scale:1.06}, {opacity:1,x:0,scale:1,duration:.34,ease:"expo.out",immediateRender:false}, 5.31).fromTo("#unlock-1", {opacity:0,y:-80,rotation:-4}, {opacity:1,y:0,rotation:0,duration:.38,ease:"power3.out",immediateRender:false}, 5.4).fromTo("#unlock-2", {opacity:0,x:90,scale:.82}, {opacity:1,x:0,scale:1,duration:.33,ease:"back.out(1.65)",immediateRender:false}, 5.62).fromTo("#unlock-3", {opacity:0,y:75,rotation:3}, {opacity:1,y:0,rotation:0,duration:.29,ease:"power4.out",immediateRender:false}, 5.83);
       tl.fromTo("#scene-three-title", {opacity:0,y:55}, {opacity:1,y:0,duration:.3,ease:"power4.out",immediateRender:false}, 8.08).fromTo("#input-text", {opacity:0,x:-100,rotation:-3}, {opacity:1,x:0,rotation:0,duration:.34,ease:"expo.out",immediateRender:false}, 8.18).fromTo("#input-url", {opacity:0,y:90,scale:.88}, {opacity:1,y:0,scale:1,duration:.4,ease:"back.out(1.6)",immediateRender:false}, 9.7).fromTo("#input-image", {opacity:0,x:105,rotation:3}, {opacity:1,x:0,rotation:0,duration:.3,ease:"power3.out",immediateRender:false}, 11.15).to("#input-text", {y:-10,duration:.55,yoyo:true,repeat:5,ease:"sine.inOut"}, 8.6);
       tl.fromTo("#scene-four-title", {opacity:0,x:-90}, {opacity:1,x:0,duration:.32,ease:"expo.out",immediateRender:false}, 12.39).fromTo("#output-a", {opacity:0,y:90,scale:.9}, {opacity:1,y:0,scale:1,duration:.42,ease:"back.out(1.5)",immediateRender:false}, 12.47).fromTo("#output-b", {opacity:0,x:80,rotation:5}, {opacity:1,x:0,rotation:0,duration:.3,ease:"power3.out",immediateRender:false}, 12.66).fromTo("#output-c", {opacity:0,y:70,rotation:-4}, {opacity:1,y:0,rotation:0,duration:.27,ease:"power4.out",immediateRender:false}, 12.82).fromTo("#final-lockup", {opacity:0,x:-70}, {opacity:1,x:0,duration:.33,ease:"expo.out",immediateRender:false}, 13.32).to(".shape-a", {rotation:300,scale:.78,duration:3.2,ease:"none"}, 12.6).to(".shape-b", {rotation:-270,borderRadius:"50%",duration:2.7,ease:"power1.inOut"}, 12.85).to(".shape-c", {rotation:180,scaleX:.62,duration:2.4,ease:"sine.inOut"}, 13.05);

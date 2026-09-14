@@ -2,17 +2,18 @@
 
 ## 1. Start with immediate movement
 
-The raw talking-head footage begins full-screen. At 0.06 seconds, the `GPT-6 ASTRA` title slams in. At 0.18 seconds, the footage begins moving into its final rail while the visual canvas wipes on.
+The raw talking-head footage stays full-screen for the first three seconds with a slow push-in, so the viewer connects with the speaker first. At 0.06 seconds, the `GPT-6 ASTRA` title slams in and holds until 2.55 seconds; the opening words get a large centered caption.
 
-The move is intentionally fast: a short ramp, a linear burst, and a longer ease-out make the layout feel decisive without stopping harshly.
+At 3 seconds, the footage shrinks into its floating card over 0.75 seconds (`power4.inOut`) while the canvas window scales in behind it.
 
-## 2. Put the presenter on the right
+## 2. Float the presenter on the right
 
-The final layout reserves 384 pixels of the 1920-pixel frame for the presenter—exactly 20%. The footage is not permanently cropped. HyperFrames animates the crop and camera wrapper, so teammates can change the split or framing directly in CSS and GSAP.
+The final layout is a 340×560 rounded card at `left: 1520px; top: 260px`, next to the canvas window. The footage is not permanently cropped: HyperFrames animates a rounded `clip-path` inset and the camera wrapper, so teammates can change the card size or framing directly in CSS and GSAP. If you move the card, update the `clipPath` inset, the camera `x`/`y`/`scale`, `.pip-frame`, and `.presenter-tag` together.
 
 Key selectors:
 
-- `#presenter-clip` controls the visible right-side rail.
+- `#presenter-clip` controls the visible card (rounded clip-path).
+- `#pip-frame` draws the card's orange offset shadow.
 - `#presenter-camera` controls the crop position and zoom.
 - `#presenter-video` is the untouched raw source.
 
